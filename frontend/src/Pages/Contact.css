@@ -1,0 +1,150 @@
+/* ===============================
+   WHY SECTION (CONTACT PAGE)
+================================ */
+
+.why-section {
+  min-height: 100vh;
+  padding: 140px 80px 60px;
+  color: #f5f5f5;
+  position: relative;
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* 🔥 ORANGE / AMBER OVERLAY */
+.why-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 140, 0, 0.18),
+    rgba(0, 0, 0, 0.95)
+  );
+  z-index: 0;
+}
+
+/* ===============================
+   MAIN CONTENT
+================================ */
+
+.why-container {
+  display: flex;
+  gap: 60px;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.why-left h2 {
+  font-size: 42px;
+  margin-bottom: 14px;
+  color: #ff8c00; /* ORANGE HEADING */
+  letter-spacing: 1px;
+}
+
+.why-left h3 {
+  font-size: 26px;
+  margin-bottom: 22px;
+  color: #ffae42; /* LIGHT ORANGE */
+}
+
+/* ===============================
+   TRAINER CARDS
+================================ */
+
+.trainer-cards {
+  display: flex;
+  gap: 20px;
+}
+
+.trainer-card {
+  width: 120px;
+  height: 150px;
+  border-radius: 16px;
+  border: 1.5px solid rgba(255, 140, 0, 0.7);
+  background: linear-gradient(
+    145deg,
+    rgba(255, 140, 0, 0.08),
+    rgba(0, 0, 0, 0.9)
+  );
+  backdrop-filter: blur(8px);
+  transition: all 0.35s ease;
+}
+
+.trainer-card:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 30px rgba(255, 140, 0, 0.55);
+}
+
+/* ===============================
+   RIGHT IMAGE
+================================ */
+
+.why-right img {
+  max-width: 430px;
+  border-radius: 22px;
+  box-shadow: 0 0 55px rgba(255, 140, 0, 0.45);
+}
+
+/* ===============================
+   FOOTER CONTACT
+================================ */
+
+.why-footer {
+  margin-top: 70px;
+  padding-top: 30px;
+  border-top: 1px solid rgba(255, 140, 0, 0.25);
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 26px;
+  justify-content: space-between;
+  align-items: center;
+
+  position: relative;
+  z-index: 1;
+}
+
+.why-footer div {
+  font-size: 15px;
+  color: #e0e0e0;
+}
+
+/* ===============================
+   SOCIAL ICONS
+================================ */
+
+.socials i {
+  margin-left: 18px;
+  font-size: 21px;
+  cursor: pointer;
+  color: #ff8c00;
+  transition: all 0.3s ease;
+}
+
+.socials i:hover {
+  color: #ffae42;
+  transform: scale(1.25);
+}
+
+/* ===============================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 900px) {
+  .why-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .trainer-cards {
+    justify-content: center;
+  }
+
+  .why-section {
+    padding: 120px 30px 50px;
+  }
+}

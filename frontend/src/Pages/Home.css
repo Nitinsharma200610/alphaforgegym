@@ -1,0 +1,74 @@
+/* ================= HERO CONTAINER ================= */
+
+.home-container {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+
+  padding: 0 6% 8%;
+  z-index: 1;
+}
+
+
+/* ================= CONTENT ================= */
+
+.home-content {
+  position: relative;
+  max-width: 520px;
+  z-index: 2;
+}
+
+/* ================= TEXT ================= */
+
+.home-content h1 {
+  font-size: 3.2rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  color: #ffffff;
+}
+
+.home-content h1 span {
+  color: #ff2c2c;
+}
+
+.home-content p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #ffffff;
+  margin-bottom: 2rem;
+}
+
+/* ================= BUTTON ================= */
+
+.home-btn {
+  display: inline-block;
+  padding: 14px 38px;
+  background: #ff2c2c;
+  color: #ffffff;
+  font-weight: 600;
+  border-radius: 30px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.home-btn:hover {
+  background: #ffffff;
+  color: #ff2c2c;
+  transform: translateY(-4px);
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 768px) {
+  .home-content h1 {
+    font-size: 2.2rem;
+  }
+
+  .home-content p {
+    font-size: 1rem;
+  }
+}

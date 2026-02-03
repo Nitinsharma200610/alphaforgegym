@@ -1,0 +1,121 @@
+/* ================= ABOUT SECTION ================= */
+
+.about-section {
+  width: 100%;
+  min-height: 100vh;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* dark overlay */
+.about-overlay {
+  width: 100%;
+  min-height: 100vh;
+  background: rgba(0, 0, 0, 0.75);
+  position: absolute;
+  inset: 0;
+  padding: 80px 20px;
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* content center lock */
+.about-overlay > * {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ================= TEXT ================= */
+
+.about-title {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #ff6a00;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+}
+
+.about-desc {
+  max-width: 800px;
+  margin: 0 auto 60px;
+  font-size: 1.1rem;
+  color: #ddd;
+  line-height: 1.7;
+}
+
+/* ================= CARDS ================= */
+
+.about-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  width: 100%;
+}
+
+/* single card */
+.about-card {
+  position: relative;
+  min-height: 220px;
+  padding: 35px 20px;
+
+  background: linear-gradient(145deg, #111, #1a1a1a);
+  border: 1px solid #ff6a00;
+  border-radius: 16px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  transition: 0.3s ease;
+}
+
+.about-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 0 30px rgba(255, 106, 0, 0.6);
+}
+
+/* number */
+.card-number {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #ff6a00;
+}
+
+/* image */
+.card-img {
+  width: 70px;
+  margin-bottom: 15px;
+  filter: drop-shadow(0 0 10px rgba(255, 106, 0, 0.6));
+}
+
+/* text */
+.about-card p {
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 900px) {
+  .about-cards {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  .about-title {
+    font-size: 2.2rem;
+  }
+}

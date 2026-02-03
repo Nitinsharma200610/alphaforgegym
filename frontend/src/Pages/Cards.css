@@ -1,0 +1,104 @@
+/* --------------------- */
+/* GLOBAL RESET */
+/* --------------------- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* --------------------- */
+/* CARDS CONTAINER */
+/* --------------------- */
+.services {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 cards per row */
+  gap: 2rem; /* space between cards */
+  padding: 4rem 8%; /* top/bottom and sides */
+  background-color: #0e0e0e; /* dark background for gym vibe */
+}
+
+/* --------------------- */
+/* CARD STYLING */
+/* --------------------- */
+.card {
+  width:320px;
+  height:380px;
+  background-color: #141414;       /* dark card background */
+  border-radius: 10px;             /* rounded corners */
+  overflow: hidden;
+  text-align: center;
+  display: flex;
+  flex-direction:column;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  cursor: pointer;
+}
+
+/* IMAGE INSIDE CARD */
+.card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display:block;
+  flex: 1;
+  transition: transform 0.5s ease;
+}
+
+/* CARD TITLE WITH GRADIENT TEXT */
+.card h3 {
+  margin-top:3px;
+  padding-bottom: 12px;
+  text-align: bottom;
+  padding: 1.2rem 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: transparent; /* fallback */
+  background: linear-gradient(90deg, #ff6a00, #ffb347); /* gradient colors */
+  background-clip: text; /* standard */
+  -webkit-background-clip: text; /* Safari/Chrome */
+  -webkit-text-fill-color: transparent; /* Safari/Chrome */
+  margin-top: auto;
+}
+
+/* HOVER EFFECTS */
+.card:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 25px 60px rgba(255, 106, 0, 0.3);
+}
+
+.card:hover img {
+  transform: scale(1.08);
+}
+
+/* --------------------- */
+/* RESPONSIVE DESIGN */
+/* --------------------- */
+
+/* Tablets: 2 cards per row */
+@media (max-width: 992px) {
+  .services {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    padding: 3rem 6%;
+  }
+}
+
+/* Mobile: 1 card per row */
+@media (max-width: 576px) {
+  .services {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+    padding: 2rem 4%;
+  }
+
+ 
+}
+.services-section {
+  min-height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}

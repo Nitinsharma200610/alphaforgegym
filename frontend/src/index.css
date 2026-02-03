@@ -1,0 +1,282 @@
+/* ===== RESET & BASE STYLES ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background-color: #f4f4f4;
+  color: #222;
+}
+
+
+
+/* ===== PAGE CONTAINER ===== */
+.page {
+  max-width: 1100px;
+  margin: 60px auto;
+  padding: 0 20px;
+}
+
+/* ===== HOME PAGE ===== */
+.hero {
+  background: linear-gradient(
+      rgba(0, 0, 0, 0.7),
+      rgba(0, 0, 0, 0.7)
+    ),
+    url("/vite.svg");
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  padding: 80px 40px;
+  border-radius: 10px;
+}
+
+.hero h1 {
+  font-size: 42px;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  font-size: 18px;
+  max-width: 600px;
+  line-height: 1.6;
+}
+
+/* ===== FORMS (LOGIN / SIGNUP) ===== */
+form {
+  max-width: 400px;
+  margin: 40px auto;
+  background: #fff;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+form h1 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+form input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  border: 1px solid #903737;
+  font-size: 15px;
+}
+
+form button {
+  width: 100%;
+  padding: 10px;
+  background-color: #000;
+  color: #ec2d2d;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: #ff3c3c;
+}
+
+/* ===== FOOTER ===== */
+footer {
+  margin-top: 80px;
+  background-color: #000;
+  color: #ccc;
+  text-align: center;
+  padding: 15px;
+  font-size: 14px;
+}
+
+
+/* swiper css  :*/
+/*
+#app {
+  height: 100%;
+}
+html,
+body {
+  position: relative;
+  height: 100%;
+}
+
+body {
+  background: #000;
+  font-family:
+    Helvetica Neue,
+    Helvetica,
+    Arial,
+    sans-serif;
+  font-size: 14px;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #fff;
+  font-family:
+    Helvetica Neue,
+    Helvetica,
+    Arial,
+    sans-serif;
+  font-size: 14px;
+  color: #000;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  position: relative;
+  height: 100%;
+}
+
+#app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper {
+  width: 240px;
+  height: 320px;
+}
+
+.swiper-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 18px;
+  font-size: 22px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.swiper-slide:nth-child(1n) {
+  background-color: rgb(206, 17, 17);
+}
+
+.swiper-slide:nth-child(2n) {
+  background-color: rgb(0, 140, 255);
+}
+
+.swiper-slide:nth-child(3n) {
+  background-color: rgb(10, 184, 111);
+}
+
+.swiper-slide:nth-child(4n) {
+  background-color: rgb(211, 122, 7);
+}*/
+/* HERO SECTION */
+.home {
+  position: relative;
+  min-height: 100vh;          /* 👈 height kam */
+  width: 100%;
+  background-image: url("./assets/back.png");
+
+  background-size: cover;    /* 👈 image proportional rahe */
+  background-position: center top; /* 👈 upar se focus */
+  background-repeat: no-repeat;
+
+  display: flex;
+  align-items: center;
+  padding: 0 8%;
+  color: #fff;
+  overflow: hidden;
+}
+
+
+
+/* service detail page css */
+
+.service-detail {
+  min-height: 100vh;
+  background: #0b0b0b;
+  color: #fff;
+  padding: 80px 10%;
+}
+
+.back-btn {
+  background: transparent;
+  border: 1px solid #ffb703;
+  color: #ffb703;
+  padding: 10px 18px;
+  cursor: pointer;
+  margin-bottom: 40px;
+}
+
+.service-hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 50px;
+}
+
+.service-text h1 {
+  font-size: 48px;
+  margin-bottom: 15px;
+}
+
+.service-text p {
+  font-size: 18px;
+  color: #ccc;
+}
+
+.service-image img {
+  width: 100%;
+  max-width: 420px;
+}
+
+.service-features {
+  margin-top: 80px;
+}
+
+.service-features h2 {
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 32px;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.feature-card {
+  background: #151515;
+  padding: 25px;
+  border-radius: 12px;
+  text-align: center;
+  border: 1px solid #222;
+}
+
+.service-cta {
+  margin-top: 80px;
+  padding: 60px;
+  background: linear-gradient(135deg, #ffb703, #fb8500);
+  text-align: center;
+  border-radius: 20px;
+  color: #000;
+}
+
+.service-cta h2 {
+  margin-bottom: 20px;
+}
+
+.service-cta button {
+  padding: 14px 32px;
+  border: none;
+  background: #000;
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+
