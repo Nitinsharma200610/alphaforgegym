@@ -1,65 +1,84 @@
+import { useEffect, useState } from "react";
 import "./Cards.css";
 import { useNavigate } from "react-router-dom";
-
-import physicalImg from "../assets/physical.png";
-import weight from "../assets/Weight.png";
-import strength from "../assets/Strength.png";
-import weightlift from "../assets/weightLf.png";
-import fat from "../assets/Fat.png";
+import { getAllServices } from "../services/serviceService";
 import bgImage from "../assets/services-bg.png";
 
 const Cards = () => {
   const navigate = useNavigate();
+  const [services, setServices] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  // 🔹 Cards Data (Dynamic + Reusable)
-  const cardsData = [
-    {
-      id: "physical-fitness",
-      title: "Physical Fitness",
-      image: physicalImg,
-    },
-    {
-      id: "weight-gain",
-      title: "Weight Gain",
-      image: weight,
-    },
-    {
-      id: "strength-training",
-      title: "Strength Training",
-      image: strength,
-    },
-    {
-      id: "weightlifting",
-      title: "Weightlifting",
-      image: weightlift,
-    },
-    {
-      id: "fat-loss",
-      title: "Fat Loss",
-      image: fat,
-    },
-  ];
+  useEffect(() => {
+    fetchServices();
+  }, []);
 
-  // 🔹 Click Handler (Route will be set later in App.jsx)
+  const fetchServices = async () => {
+    try {
+      setLoading(true);
+      const data = await getAllServices();
+      setServices(data.services || []);
+    } catch (error) {
+      console.error("Failed to fetch services:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const handleCardClick = (id) => {
-    console.log("running")
     navigate(`/services/${id}`);
   };
+
+  if (loading) {
+    return (
+      <section
+        className="services"
+        style={{ backgroundImage: `url(${bgImage})` }}
+      >
+        <p style={{ textAlign: "center", color: "#fff", fontSize: "18px" }}>
+          Loading services...
+        </p>
+      </section>
+    );
+  }
+
+  if (services.length === 0) {
+    return (
+      <section
+        className="services"
+        style={{ backgroundImage: `url(${bgImage})` }}
+      >
+        <p style={{ textAlign: "center", color: "#fff", fontSize: "18px" }}>
+          No services available
+        </p>
+      </section>
+    );
+  }
 
   return (
     <section
       className="services"
-      style={{ backgroundImage: `url(${bgImage})` }}
     >
-      {cardsData.map((card) => (
+      {services.map((service) => (
+        <>
+      
         <div
-          key={card.id}
+          key={service._id}
           className="card"
-          onClick={() => handleCardClick(card.id)}
+          onClick={() => handleCardClick(service._id)}
         >
-          <img src={card.image} alt={card.title} />
-          <h3>{card.title}</h3>
+          {service.image && <img src={service.image} alt={service.name} />}
+          <h3>{service.name}</h3>
         </div>
+         <div
+          key={service._id}
+          className="card"
+          onClick={() => handleCardClick(service._id)}
+        >
+          {service.image && <img src={service.image} alt={service.name} />}
+          <h3>{service.name}</h3>
+        </div>
+          </>
       ))}
     </section>
   );

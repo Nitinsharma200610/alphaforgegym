@@ -14,7 +14,7 @@
   inset: 0;
   background:
     radial-gradient(circle at bottom, rgba(255, 140, 0, 0.25), transparent 60%),
-    linear-gradient(135deg, rgba(0,0,0,0.9), rgba(20,10,0,0.96));
+    linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(20, 10, 0, 0.96));
 }
 
 /* SIGNUP CARD */
@@ -88,8 +88,8 @@
 
 .password-field .eye {
   position: absolute;
-  right: 14px;
-  top: 50%;
+  right: 11px;
+  top: 37%;
   transform: translateY(-50%);
   cursor: pointer;
 

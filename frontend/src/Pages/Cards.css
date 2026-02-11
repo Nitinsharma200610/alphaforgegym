@@ -13,16 +13,27 @@
 /* --------------------- */
 .services {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 cards per row */
-  gap: 2rem; /* space between cards */
-  padding: 4rem 8%; /* top/bottom and sides */
-  background-color: #0e0e0e; /* dark background for gym vibe */
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  padding: 4rem 8%;
+background: linear-gradient(to bottom, rgb(0, 0, 0), rgb(0, 0, 0));
+  /* background-image: url("../assets/Services-bg.png");  */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  min-height: 100dvh;   /* ✅ height hatao */
+  height: auto;        /* ✅ content ke according badhega */
 }
+
 
 /* --------------------- */
 /* CARD STYLING */
 /* --------------------- */
 .card {
+  margin-top: 3rem;
   width:320px;
   height:380px;
   background-color: #141414;       /* dark card background */
@@ -34,6 +45,7 @@
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
   transition: transform 0.4s ease, box-shadow 0.4s ease;
   cursor: pointer;
+
 }
 
 /* IMAGE INSIDE CARD */

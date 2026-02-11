@@ -1,0 +1,233 @@
+/* Admin Pages Styling */
+.admin-page {
+  min-height: 100vh;
+  background-color: #0a0a0a;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+  color: #ecdddd;
+  padding: 100px 40px 40px;
+}
+
+.admin-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.admin-container h1 {
+  font-size: 42px;
+  font-weight: 700;
+  margin-bottom: 30px;
+  color: #ff3c3c;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.welcome-text {
+  font-size: 18px;
+  color: #bbb;
+  margin-bottom: 40px;
+  font-weight: 300;
+}
+
+/* Dashboard Cards */
+.dashboard-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+  margin-top: 40px;
+}
+
+.dashboard-card {
+  background: linear-gradient(135deg, #1a1a1a 0%, #252525 100%);
+  padding: 35px;
+  border-radius: 12px;
+  border: 2px solid #ff3c3c;
+  border-left: 5px solid #ff3c3c;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 16px rgba(255, 60, 60, 0.1);
+}
+
+.dashboard-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(255, 60, 60, 0.2);
+  border-color: #ff6b6b;
+}
+
+.dashboard-card h3 {
+  font-size: 16px;
+  color: #bbb;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+
+.card-number {
+  top: 0;
+  left: 0;
+  position: relative;
+  font-size: 42px;
+  font-weight: 700;
+  color: #ff3c3c;
+}
+
+/* Admin Form */
+.admin-form {
+  max-width: 700px;
+  margin-top: 40px;
+  background: linear-gradient(135deg, #1a1a1a 0%, #252525 100%);
+  padding: 40px;
+  border-radius: 12px;
+  border: 1px solid #333;
+}
+
+.form-group {
+  margin-bottom: 30px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 12px;
+  font-size: 14px;
+  color: #ff3c3c;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 14px 16px;
+  background-color: #0f0f0f;
+  border: 2px solid #333;
+  border-radius: 8px;
+  color: #ecdddd;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #ff3c3c;
+  box-shadow: 0 0 10px rgba(255, 60, 60, 0.2);
+  background-color: #1a1a1a;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.admin-btn {
+  background: linear-gradient(135deg, #ff3c3c 0%, #ff6b6b 100%);
+  color: #fff;
+  padding: 14px 40px;
+  border: none;
+  border-radius: 8px;
+  font-size: 6px 20px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+  background-color: #1a1a1a;
+  border-left: 5px solid #ff3c3c;
+  color: #ecdddd;
+  font-size: 14px;
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.admin-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(255, 60, 60, 0.3);
+}
+
+.admin-btn:disabled {
+  background: #666;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.users-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #1a1a1a;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.users-table thead {
+  background: linear-gradient(135deg, #ff3c3c 0%, #ff6b6b 100%);
+}
+
+.users-table th {
+  padding: 18px 20px;
+  text-align: left;
+  font-weight: 700;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 13px;
+}
+
+.users-table td {
+  padding: 18px 20px;
+  border-bottom: 1px solid #333;
+  color: #bbb;
+  font-size: 14px;
+}
+
+.users-table tbody tr {
+  transition: all 0.3s ease;
+}
+
+.users-table tbody tr:hover {
+  background-color: #252525;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.status-badge.enrolled {
+  background-color: rgba(46, 204, 113, 0.2);
+  color: #2ecc71;
+  border: 1px solid #2ecc71;
+}
+
+.status-badge.not-enrolled {
+  background-color: rgba(100, 100, 100, 0.2);
+  color: #aaa;
+  border: 1px solid #666;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.status-badge.enrolled {
+  background-color: #2ecc71;
+  color: #fff;
+}
+
+.status-badge.not-enrolled {
+  background-color: #666;
+  color: #fff;
+}

@@ -5,7 +5,7 @@ const Contact = () => {
   return (
     <section
       className="why-section"
-      style={{ backgroundImage: `url(${contactBg})` }}
+
     >
       <div className="why-container">
 
@@ -29,7 +29,7 @@ const Contact = () => {
 
       {/* FOOTER CONTACT */}
       <div className="why-footer">
-        <div>📞 +91 98765 43210</div>
+        <div>📞 +91 93176 25636</div>
         <div>✉️ info@alphaforgegym.com</div>
         <div>📍 123 Fitness St, Iron City</div>
 
