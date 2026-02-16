@@ -1,9 +1,11 @@
 import Membership from "../models/membership.model.js";
 import User from "../models/user.model.js";
+import UserPlan from "../models/userPlan.model.js";
 import Stripe from "stripe";
 import asyncHandler from "express-async-handler";
 import {
   createProduct,
+  createCustomer,
   updateProduct,
   deleteProduct,
   createCheckoutSession,
@@ -71,6 +73,27 @@ export const verifyCheckoutSession = asyncHandler(async (req, res) => {
         };
         await user.save();
 
+        // Mark all previous plans as expired
+        await UserPlan.updateMany(
+          { userId: user._id, status: "active" },
+          { status: "expired" },
+        );
+
+        // Create or update UserPlan record (upsert prevents duplicates on page refresh)
+        await UserPlan.findOneAndUpdate(
+          { userId: user._id, subscriptionId: subscription.id },
+          {
+            userId: user._id,
+            membershipId: membership._id,
+            subscriptionId: subscription.id,
+            status: "active",
+            startDate: startDate,
+            endDate: endDate,
+            purchasedAt: new Date(),
+          },
+          { upsert: true, new: true },
+        );
+
         return res.json({
           message: "Subscription activated successfully",
           subscription: user.subscription,
@@ -130,6 +153,7 @@ export const createMembership = asyncHandler(async (req, res) => {
     features: featuresList,
     planId: stripeProduct.planId,
     priceId: stripeProduct.priceId,
+    createdBy: req.user._id,
   });
 
   return res.status(201).json({
@@ -139,20 +163,24 @@ export const createMembership = asyncHandler(async (req, res) => {
 });
 
 export const getAllMemberships = asyncHandler(async (req, res) => {
-  const memberships = await Membership.find({ isActive: true }).sort({
-    createdAt: -1,
-  });
+  const filter = { isActive: true };
+  if (req.query.createdBy) {
+    filter.createdBy = req.query.createdBy;
+  }
+  const memberships = await Membership.find(filter)
+    .populate("createdBy", "name")
+    .sort({ createdAt: -1 });
   return res.json({ memberships });
 });
 
 export const checkoutMembership = asyncHandler(async (req, res) => {
   const { membershipId } = req.body;
-  const userId = req.user?.id || req.body.userId;
+  const userId = req.user._id;
 
-  if (!membershipId || !userId) {
+  if (!membershipId) {
     return res
       .status(400)
-      .json({ message: "Membership ID and User ID are required" });
+      .json({ message: "Membership ID is required" });
   }
 
   const membership = await Membership.findById(membershipId);
@@ -179,6 +207,36 @@ export const checkoutMembership = asyncHandler(async (req, res) => {
       url: checkoutSession.url,
     });
   } catch (error) {
+    // If currency conflict, create a fresh Stripe customer and retry
+    if (error.message && error.message.includes("cannot combine currencies")) {
+      try {
+        const newCustomer = await createCustomer({
+          name: user.name,
+          email: user.email,
+        });
+        user.customerId = newCustomer.id;
+        await user.save();
+
+        const checkoutSession = await createCheckoutSession({
+          customerId: newCustomer.id,
+          priceId: membership.priceId,
+          successUrl: `${process.env.FRONTEND_URL || "http://localhost:5173"}/checkout/success`,
+          cancelUrl: `${process.env.FRONTEND_URL || "http://localhost:5173"}/membership`,
+        });
+
+        return res.json({
+          message: "Checkout session created",
+          sessionId: checkoutSession.id,
+          url: checkoutSession.url,
+        });
+      } catch (retryError) {
+        return res.status(500).json({
+          message: "Error creating checkout session",
+          error: retryError.message,
+        });
+      }
+    }
+
     return res.status(500).json({
       message: "Error creating checkout session",
       error: error.message,

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { loginUser } from "../services/authService";
 import { useAuth } from "../hooks/useAuth";
 import "./Login.css";
-import bgImage from "../assets/login-bg.png";
+//  
 import toast from "react-hot-toast";
 
 const Login = () => {
@@ -24,7 +24,9 @@ const Login = () => {
       login(data.user);
 
       // Redirect based on role
-      if (data.user.role === "ADMIN") {
+      if (data.user.role === "SUPERADMIN") {
+        navigate("/superadmin");
+      } else if (data.user.role === "ADMIN") {
         navigate("/admin");
       } else {
         navigate("/");

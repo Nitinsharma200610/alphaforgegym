@@ -72,10 +72,12 @@ export const createProduct = async (data) => {
   const product = await stripe.products.create({
     name: data.name,
   });
+
+
   if (product && product.id) {
     const price = await stripe.prices.create({
       unit_amount: Number(data.price) * 100,
-      currency: data.currency || "inr",
+      currency: "inr",
       recurring: {
         interval: data.interval,
         interval_count: Number(data.validity || 1),

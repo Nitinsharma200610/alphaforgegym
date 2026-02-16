@@ -12,7 +12,7 @@ const membershipSchema = new mongoose.Schema(
     },
     duration: {
       type: String,
-      enum: ["monthly", "yearly"],
+      enum: ["monthly", "quarterly", "yearly"],
       required: true,
     },
     features: {
@@ -34,6 +34,11 @@ const membershipSchema = new mongoose.Schema(
     isPurchased: {
       type: Boolean,
       default: false,
+    },
+    createdBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      default: null,
     },
   },
   { timestamps: true },

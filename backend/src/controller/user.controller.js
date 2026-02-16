@@ -77,20 +77,37 @@ export const getAllUsers = asyncHandler(async (req, res) => {
 });
 
 export const getAdminStats = asyncHandler(async (req, res) => {
-  const totalUsers = await User.countDocuments({ role: "USER" });
-  const totalServices = await Service.countDocuments({ isActive: true });
-  
-  // Count active subscriptions by checking status
-  const activeSubscriptions = await User.countDocuments({ 
-    "subscription.status": "active",
-    role: "USER"
+  const adminId = req.user._id;
+
+  // Count memberships and services created by this admin
+  const totalMemberships = await Membership.countDocuments({
+    isActive: true,
+    createdBy: adminId,
+  });
+  const totalServices = await Service.countDocuments({
+    isActive: true,
+    createdBy: adminId,
   });
 
-  // Calculate generic revenue (mock calculation based on memberships)
-  // In a real app, this would come from Stripe or a Transaction model
-  // For now, let's sum up the price of active memberships
-  const usersWithActiveSubs = await User.find({ 
-    "subscription.status": "active" 
+  // Get all membership IDs created by this admin
+  const adminMemberships = await Membership.find({
+    createdBy: adminId,
+    isActive: true,
+  }).select("_id price");
+
+  const adminMembershipIds = adminMemberships.map((m) => m._id);
+
+  // Count users who have active subscriptions to THIS admin's memberships
+  const activeSubscriptions = await User.countDocuments({
+    "subscription.status": "active",
+    "subscription.membershipId": { $in: adminMembershipIds },
+    role: "USER",
+  });
+
+  // Calculate revenue from users subscribed to this admin's memberships
+  const usersWithActiveSubs = await User.find({
+    "subscription.status": "active",
+    "subscription.membershipId": { $in: adminMembershipIds },
   }).populate("subscription.membershipId");
 
   const totalRevenue = usersWithActiveSubs.reduce((acc, user) => {
@@ -99,11 +116,11 @@ export const getAdminStats = asyncHandler(async (req, res) => {
 
   return res.json({
     stats: {
-      totalUsers,
+      totalMemberships,
       totalServices,
       activeSubscriptions,
-      totalRevenue
-    }
+      totalRevenue,
+    },
   });
 });
 

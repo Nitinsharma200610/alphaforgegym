@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { registerUser } from "../services/authService";
 import "./Signup.css";
-import bgImage from "../assets/login-bg.png";
 import toast from "react-hot-toast";
 
 const Signup = () => {

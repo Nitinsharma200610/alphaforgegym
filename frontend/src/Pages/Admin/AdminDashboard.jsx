@@ -6,7 +6,7 @@ import "./AdminPages.css";
 const AdminDashboard = () => {
   const { user } = useAuth();
   const [stats, setStats] = useState({
-    totalUsers: 0,
+    totalMemberships: 0,
     activeSubscriptions: 0,
     totalServices: 0,
     totalRevenue: 0,
@@ -33,20 +33,20 @@ const AdminDashboard = () => {
 
         <div className="dashboard-cards">
           <div className="dashboard-card">
-            <h3>Total Users</h3>
-            <p className="card-number">{stats.totalUsers}</p>
+            <h3>My Memberships</h3>
+            <p className="card-number">{stats.totalMemberships}</p>
           </div>
           <div className="dashboard-card">
-            <h3>Active Memberships</h3>
+            <h3>Active Subscribers</h3>
             <p className="card-number">{stats.activeSubscriptions}</p>
           </div>
           <div className="dashboard-card">
-            <h3>Total Services</h3>
+            <h3>My Services</h3>
             <p className="card-number">{stats.totalServices}</p>
           </div>
           <div className="dashboard-card">
             <h3>Revenue (Est.)</h3>
-            <p className="card-number">${stats.totalRevenue}</p>
+            <p className="card-number">Rs. {stats.totalRevenue}</p>
           </div>
         </div>
       </div>

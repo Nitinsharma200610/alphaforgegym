@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import "./Cards.css";
 import { useNavigate } from "react-router-dom";
 import { getAllServices } from "../services/serviceService";
-import bgImage from "../assets/services-bg.png";
 
 const Cards = () => {
   const navigate = useNavigate();
@@ -29,12 +28,21 @@ const Cards = () => {
     navigate(`/services/${id}`);
   };
 
+
+
+  // Group services by admin/gym name
+  const groupedServices = services.reduce((groups, service) => {
+    const gymName = service.createdBy?.name || "Other";
+    if (!groups[gymName]) {
+      groups[gymName] = [];
+    }
+    groups[gymName].push(service);
+    return groups;
+  }, {});
+
   if (loading) {
     return (
-      <section
-        className="services"
-        style={{ backgroundImage: `url(${bgImage})` }}
-      >
+      <section className="services">
         <p style={{ textAlign: "center", color: "#fff", fontSize: "18px" }}>
           Loading services...
         </p>
@@ -44,10 +52,7 @@ const Cards = () => {
 
   if (services.length === 0) {
     return (
-      <section
-        className="services"
-        style={{ backgroundImage: `url(${bgImage})` }}
-      >
+      <section className="services">
         <p style={{ textAlign: "center", color: "#fff", fontSize: "18px" }}>
           No services available
         </p>
@@ -56,29 +61,26 @@ const Cards = () => {
   }
 
   return (
-    <section
-      className="services"
-    >
-      {services.map((service) => (
-        <>
-      
-        <div
-          key={service._id}
-          className="card"
-          onClick={() => handleCardClick(service._id)}
-        >
-          {service.image && <img src={service.image} alt={service.name} />}
-          <h3>{service.name}</h3>
+    <section className="services">
+      {Object.entries(groupedServices).map(([gymName, gymServices]) => (
+        <div key={gymName} className="gym-service-group">
+          <div className="gym-service-header">
+            <div className="gym-service-icon">🏋️</div>
+            <h2 className="gym-service-name">{gymName}</h2>
+          </div>
+          <div className="cards-grid">
+            {gymServices.map((service) => (
+              <div
+                key={service._id}
+                className="card"
+                onClick={() => handleCardClick(service._id)}
+              >
+                {service.image && <img src={service.image} alt={service.name} />}
+                <h3>{service.name}</h3>
+              </div>
+            ))}
+          </div>
         </div>
-         <div
-          key={service._id}
-          className="card"
-          onClick={() => handleCardClick(service._id)}
-        >
-          {service.image && <img src={service.image} alt={service.name} />}
-          <h3>{service.name}</h3>
-        </div>
-          </>
       ))}
     </section>
   );

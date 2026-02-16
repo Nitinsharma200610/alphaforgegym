@@ -3,6 +3,8 @@ import { Toaster } from "react-hot-toast";
 import Layout from "./common/layout";
 import AdminLayout from "./common/AdminLayout";
 import ProtectedAdminRoute from "./components/ProtectedAdminRoute";
+import ProtectedSuperAdminRoute from "./components/ProtectedSuperAdminRoute";
+import SuperAdminLayout from "./common/SuperAdminLayout";
 import ProtectedMemberRoute from "./components/ProtectedMemberRoute";
 
 import Home from "./Pages/Home";
@@ -14,11 +16,13 @@ import Signup from "./Pages/Signup";
 import Cards from "./Pages/Cards";
 import ServicesDetails from "./Pages/ServicesDetails";
 import CheckoutSuccess from "./Pages/CheckoutSuccess";
+import MyPlans from "./Pages/MyPlans";
 
 import AdminDashboard from "./Pages/Admin/AdminDashboard";
 import AddService from "./Pages/Admin/AddService";
 import AddMembership from "./Pages/Admin/AddMembership";
 import ViewUsers from "./Pages/Admin/ViewUsers";
+import SuperAdminDashboard from "./Pages/Admin/SuperAdminDashboard";
 
 const router = createBrowserRouter([
   {
@@ -33,6 +37,7 @@ const router = createBrowserRouter([
       { path: "login", element: <Login /> },
       { path: "signup", element: <Signup /> },
       { path: "cards", element: <Cards /> },
+      { path: "my-plans", element: <MyPlans /> },
       {
         path: "services/:id",
         element: (
@@ -55,6 +60,17 @@ const router = createBrowserRouter([
       { path: "add-service", element: <AddService /> },
       { path: "add-membership", element: <AddMembership /> },
       { path: "users", element: <ViewUsers /> },
+    ],
+  },
+  {
+    path: "/superadmin",
+    element: (
+      <ProtectedSuperAdminRoute>
+        <SuperAdminLayout />
+      </ProtectedSuperAdminRoute>
+    ),
+    children: [
+      { index: true, element: <SuperAdminDashboard /> },
     ],
   },
 ]);

@@ -21,8 +21,8 @@ const userSchema = new mongoose.Schema(
     },
     role: {
       type: String,
-      enum: ["USER", "ADMIN"],
-      default: "USER",
+      enum: ["USER", "ADMIN", "SUPERADMIN"],
+      default: "SUPERADMIN",
     },
     subscription: {
       membershipId: {

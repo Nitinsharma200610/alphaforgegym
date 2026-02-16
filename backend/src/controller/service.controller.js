@@ -19,6 +19,7 @@ export const createService = asyncHandler(async (req, res) => {
     description,
     features: featuresList,
     image,
+    createdBy: req.user._id,
   });
 
   return res.status(201).json({
@@ -28,9 +29,13 @@ export const createService = asyncHandler(async (req, res) => {
 });
 
 export const getAllServices = asyncHandler(async (req, res) => {
-  const services = await Service.find({ isActive: true }).sort({
-    createdAt: -1,
-  });
+  const filter = { isActive: true };
+  if (req.query.createdBy) {
+    filter.createdBy = req.query.createdBy;
+  }
+  const services = await Service.find(filter)
+    .populate("createdBy", "name")
+    .sort({ createdAt: -1 });
   return res.json({ services });
 });
 

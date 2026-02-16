@@ -6,13 +6,23 @@ const API = axios.create({
   baseURL: BaseURL,
 });
 
+// Add auth token to requests
+API.interceptors.request.use((config) => {
+  const token = localStorage.getItem("token");
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+});
+
 export const createService = async (data) => {
   const { data: response } = await API.post("/api/services", data);
   return response;
 };
 
-export const getAllServices = async () => {
-  const { data } = await API.get("/api/services");
+export const getAllServices = async (createdBy) => {
+  const params = createdBy ? { createdBy } : {};
+  const { data } = await API.get("/api/services", { params });
   return data;
 };
 

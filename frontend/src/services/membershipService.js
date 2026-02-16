@@ -20,8 +20,9 @@ export const createMembership = async (data) => {
   return response;
 };
 
-export const getAllMemberships = async () => {
-  const { data } = await API.get("/api/memberships");
+export const getAllMemberships = async (createdBy) => {
+  const params = createdBy ? { createdBy } : {};
+  const { data } = await API.get("/api/memberships", { params });
   return data;
 };
 
