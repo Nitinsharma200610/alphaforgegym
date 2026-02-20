@@ -1,0 +1,218 @@
+.about-section{
+  min-height: 100vh;
+
+  /* ✅ Flexible background (no image) */
+  background: radial-gradient(circle at top,
+    #1a1a1a 0%,
+    #0e0e0e 40%,
+    #070707 100%
+  );
+
+  padding: 90px 6%;
+  display: flex;
+  align-items: center;
+
+  /* animation add */
+  position: relative;
+  overflow: hidden;
+  animation: aboutFadeUp 0s ease forwards;
+}
+
+.about-overlay{
+  width: 100%;
+  text-align: center;
+}
+
+/* soft glow background (same as contact) */
+.about-section::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at 30% 20%,
+      rgba(255,140,0,0.08),
+      transparent 45%);
+  animation: aboutBgMove 10s ease-in-out infinite;
+  pointer-events:none;
+}
+
+/* ----------------- */
+/* Heading */
+/* ----------------- */
+
+.about-title{
+  font-size: 48px;
+  letter-spacing: 2px;
+  font-weight: 800;
+  color: #ff8c00;
+  margin-bottom: 14px;
+
+  animation: aboutTitleReveal .9s ease forwards;
+}
+
+.about-subtitle{
+  max-width: 850px;
+  margin: 0 auto 70px;
+  color: #cfcfcf;
+  font-size: 17px;
+  line-height: 1.7;
+
+  animation: aboutSubtitleReveal .9s ease forwards;
+  animation-delay: .2s;
+}
+
+/* ----------------- */
+/* Cards Layout */
+/* ----------------- */
+
+.about-cards{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+/* ----------------- */
+/* Card */
+/* ----------------- */
+
+.about-card{
+  position: relative;
+  padding: 40px 28px;
+  border-radius: 18px;
+
+  background: linear-gradient(180deg,
+    rgba(255,255,255,0.03),
+    rgba(0,0,0,0.55)
+  );
+
+  border: 1px solid rgba(255,140,0,0.35);
+  color: #fff;
+
+  backdrop-filter: blur(6px);
+  transition: all 0.35s ease;
+  overflow: hidden;
+
+  /* animation add */
+  animation: aboutCardIn .8s ease forwards;
+}
+
+.about-card:nth-child(1){ animation-delay:.25s; }
+.about-card:nth-child(2){ animation-delay:.45s; }
+.about-card:nth-child(3){ animation-delay:.65s; }
+
+.about-card::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  box-shadow: inset 0 0 60px rgba(255,140,0,0.08);
+  pointer-events: none;
+}
+
+.about-card:hover{
+  transform: translateY(-10px) scale(1.01);
+  border-color: #ff8c00;
+  box-shadow:
+    0 0 25px rgba(255,140,0,0.25),
+    0 0 60px rgba(255,140,0,0.15);
+}
+
+/* ----------------- */
+/* Card content */
+/* ----------------- */
+
+.card-no{
+  position: absolute;
+  top: 18px;
+  right: 22px;
+  font-size: 40px;
+  font-weight: 800;
+  color: rgba(255,255,255,0.05);
+}
+
+.card-icon{
+  font-size: 44px;
+  margin-bottom: 18px;
+  filter: drop-shadow(0 0 10px rgba(255,140,0,0.35));
+
+  animation: aboutIconFloat 3s ease-in-out infinite;
+}
+
+.about-card h3{
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.about-card p{
+  color: #bfbfbf;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* ----------------- */
+/* Animations */
+/* ----------------- */
+
+@keyframes aboutFadeUp{
+  from{ opacity:0; transform:translateY(30px); }
+  to{ opacity:1; transform:translateY(0); }
+}
+
+@keyframes aboutBgMove{
+  0%{ transform:translate(0,0); }
+  50%{ transform:translate(5%,5%); }
+  100%{ transform:translate(0,0); }
+}
+
+@keyframes aboutTitleReveal{
+  from{
+    opacity:0;
+    letter-spacing:8px;
+    transform:translateY(20px);
+  }
+  to{
+    opacity:1;
+    letter-spacing:2px;
+    transform:translateY(0);
+  }
+}
+
+@keyframes aboutSubtitleReveal{
+  from{
+    opacity:0;
+    transform:translateY(20px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+@keyframes aboutCardIn{
+  from{
+    transform:translateY(40px) scale(.97);
+  }
+  to{
+    transform:translateY(0) scale(1);
+  }
+}
+
+@keyframes aboutIconFloat{
+  0%{ transform:translateY(0); }
+  50%{ transform:translateY(-8px); }
+  100%{ transform:translateY(0); }
+}
+
+/* ----------------- */
+/* Responsive */
+/* ----------------- */
+
+@media(max-width: 900px){
+  .about-cards{
+    grid-template-columns: 1fr;
+  }
+
+  .about-title{
+    font-size: 36px;
+  }
+}

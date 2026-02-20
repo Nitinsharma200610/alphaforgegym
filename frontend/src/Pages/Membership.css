@@ -1,0 +1,187 @@
+.membership {
+  min-height: 100vh;
+  padding: 90px 60px;
+  background: radial-gradient(circle at top, #1a1a1a, #0b0b0b);
+  color: #ffffff;
+  text-align: center;
+  background: linear-gradient(to top, rgb(0, 0, 0), rgb(0, 0, 0));
+}
+
+/* TITLE */
+.membership-title {
+  font-size: 48px;
+  margin-bottom: 70px;
+  letter-spacing: 2px;
+  color: #ffffff;
+
+}
+
+/* PLANS WRAPPER */
+.plans {
+  display: flex;
+  gap: 35px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* CARD BASE */
+.plan-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 140, 0, 0.35);
+  border-radius: 22px;
+  padding: 45px 32px;
+  width: 320px;
+  transition: all 0.35s ease;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 25px rgba(255, 140, 0, 0.25);
+}
+
+.plan-card:hover {
+  transform: translateY(-14px) scale(1.05);
+  box-shadow: 0 0 45px rgba(255, 140, 0, 0.55);
+}
+
+/* PLAN NAME */
+.plan-card h2 {
+  font-size: 30px;
+  margin-bottom: 15px;
+  color: #ffffff;
+}
+
+/* PRICE */
+.price {
+  font-size: 36px;
+  color: #ff8c00;
+  margin-bottom: 28px;
+}
+
+.price span {
+  font-size: 16px;
+  color: #cfcfcf;
+}
+
+/* FEATURES */
+.plan-card ul {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 32px;
+}
+
+.plan-card ul li {
+  margin-bottom: 12px;
+  font-size: 16px;
+  position: relative;
+  padding-left: 22px;
+  color: #e6e6e6;
+}
+
+.plan-card ul li::before {
+  content: "✔";
+  color: #ff8c00;
+  position: absolute;
+  left: 0;
+}
+
+/* BUTTON */
+.plan-card button {
+  background: linear-gradient(135deg, #ff8c00, #ffae42);
+  border: none;
+  padding: 14px 36px;
+  color: #000;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.plan-card button:hover {
+  background: linear-gradient(135deg, #ffa733, #ff8c00);
+  box-shadow: 0 0 18px rgba(255, 140, 0, 0.8);
+}
+
+/* POPULAR (CENTER CARD) */
+.plan-card.popular {
+  border-color: #ffae42;
+ 
+}
+
+/* ELITE */
+.plan-card.elite {
+  border-color: #ff8c00;
+
+}
+
+/* SUBSCRIBED (Already Registered) */
+.plan-card.subscribed {
+  border-color: #00c853;
+  box-shadow: 0 0 35px rgba(0, 200, 83, 0.4);
+  position: relative;
+}
+
+.subscribed-badge {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: linear-gradient(135deg, #00c853, #00e676);
+  color: #000;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 5px 14px;
+  border-radius: 20px;
+  letter-spacing: 1px;
+}
+
+.plan-card button.subscribed-btn {
+  background: linear-gradient(135deg, #388e3c, #66bb6a);
+  color: #fff;
+  cursor: not-allowed;
+  opacity: 0.85;
+}
+
+.plan-card button.subscribed-btn:hover {
+  box-shadow: none;
+  background: linear-gradient(135deg, #388e3c, #66bb6a);
+}
+
+/* GYM GROUP */
+.gym-group {
+  margin-bottom: 60px;
+}
+
+.gym-group-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 35px;
+}
+
+.gym-group-icon {
+  font-size: 32px;
+}
+
+.gym-group-name {
+  font-size: 28px;
+  color: #ff8c00;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  position: relative;
+}
+
+.gym-group-name::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #ff8c00, transparent);
+  margin-top: 6px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .membership-title {
+    font-size: 36px;
+  }
+}
