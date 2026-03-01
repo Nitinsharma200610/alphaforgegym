@@ -2,7 +2,7 @@
   min-height: 100vh;
   padding: 90px 60px;
   background: radial-gradient(circle at top, #1a1a1a, #0b0b0b);
-  color: #ffffff;
+  color: #ff8c00;
   text-align: center;
   background: linear-gradient(to top, rgb(0, 0, 0), rgb(0, 0, 0));
 }
@@ -12,7 +12,7 @@
   font-size: 48px;
   margin-bottom: 70px;
   letter-spacing: 2px;
-  color: #ffffff;
+  color: #ff8c00;
 
 }
 

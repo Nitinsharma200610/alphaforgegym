@@ -3,7 +3,7 @@
   min-height: 100vh;
   padding: 100px 60px 60px;
   background: linear-gradient(to bottom, #000000, #0a0a0a);
-  color: #ffffff;
+  color: #ff8c00;
   text-align: center;
 }
 
@@ -11,7 +11,7 @@
   font-size: 48px;
   margin-bottom: 10px;
   letter-spacing: 3px;
-  color: #ffffff;
+  color: #ff8c00;
   font-weight: 800;
 }
 
