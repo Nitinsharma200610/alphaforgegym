@@ -40,9 +40,11 @@ const Navbar = () => {
       <nav>
         <Link to="/">Home</Link>
         <Link to="/cards">Services</Link>
+          <Link to="/bmi">BMI</Link> 
         {hasMembership && <Link to="/membership">Membership</Link>}
         {user && user.role === "USER" && (
           <Link to="/my-plans">My Plans</Link>
+       
         )}
         <Link to="/contact">Contact Us</Link>
         <Link to="/about">About</Link>

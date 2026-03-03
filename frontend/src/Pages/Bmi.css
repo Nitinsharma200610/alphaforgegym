@@ -1,0 +1,164 @@
+.bmi-wrapper {
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #111 0%, #000 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bmi-card {
+  background: #1a1a1a;
+  padding: 40px;
+  width: 450px;
+  border-radius: 25px;
+  box-shadow: 0 0 40px #ff8c00;
+  color: white;
+  text-align: center;
+}
+
+.gender-toggle {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.gender-toggle button {
+  padding: 10px 22px;
+  border-radius: 30px;
+  border: 1px solid #ff2e2e;
+  background: transparent;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.gender-toggle .active {
+  background: #ff8c00;
+  box-shadow: 0 0 15px #ff8c00;
+}
+
+.input-box {
+  text-align: left;
+  margin-bottom: 15px;
+}
+
+.input-box label {
+  font-size: 14px;
+  color: #aaa;
+}
+
+.input-box input {
+  width: 100%;
+  padding: 12px;
+  margin-top: 5px;
+  border-radius: 12px;
+  border: 1px solid #ff8c00;
+  background: #111;
+  color: white;
+}
+
+.bmi-btn {
+  width: 100%;
+  padding: 14px;
+  margin-top: 20px;
+  border-radius: 30px;
+  border: none;
+  background: linear-gradient(to right, #9b6523, #dc3232);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.bmi-btn:hover {
+  transform: scale(1.05);
+}
+
+.result h2 {
+  font-size: 48px;
+  color: #ff3b3b;
+}
+
+.status {
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+.status.normal { color: #2ecc71; }
+.status.underweight { color: #3498db; }
+.status.overweight { color: #f39c12; }
+.status.obese { color: #e74c3c; }
+
+/* Gauge */
+
+/* ===== PROFESSIONAL BMI METER ===== */
+
+.gauge-wrapper {
+  margin-top: 40px;
+  position: relative;
+}
+
+.gauge {
+  position: relative;
+  width: 320px;
+  height: 160px;
+  margin: auto;
+  overflow: hidden;
+}
+
+.gauge-arc {
+  width: 100%;
+  height: 100%;
+  border-radius: 320px 320px 0 0;
+  background: conic-gradient(
+    #2196f3 0deg 60deg,
+    #4caf50 60deg 120deg,
+    #f44336 120deg 180deg
+  );
+}
+
+.needle {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 4px;
+  height: 140px;
+  background: white;
+  transform-origin: bottom;
+  transition: transform 0.8s ease-in-out;
+  z-index: 10;
+}
+
+.gauge-center {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  color: white;
+}
+
+.gauge-center p {
+  font-size: 14px;
+  color: #aaa;
+}
+
+.gauge-center h2 {
+  font-size: 32px;
+  margin: 0;
+}
+
+.gauge-numbers {
+  position: relative;
+  width: 320px;
+  margin: auto;
+  margin-top: 10px;
+  font-size: 12px;
+  color: #ccc;
+}
+
+.gauge-numbers span {
+  position: absolute;
+  transform: translateX(-50%);
+}

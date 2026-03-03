@@ -23,6 +23,7 @@ import AddService from "./Pages/Admin/AddService";
 import AddMembership from "./Pages/Admin/AddMembership";
 import ViewUsers from "./Pages/Admin/ViewUsers";
 import SuperAdminDashboard from "./Pages/Admin/SuperAdminDashboard";
+import Bmi from "./Pages/Bmi";
 
 const router = createBrowserRouter([
   {
@@ -38,6 +39,7 @@ const router = createBrowserRouter([
       { path: "signup", element: <Signup /> },
       { path: "cards", element: <Cards /> },
       { path: "my-plans", element: <MyPlans /> },
+       { path: "bmi", element: <Bmi /> },
       {
         path: "services/:id",
         element: (

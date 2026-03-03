@@ -11,6 +11,7 @@ import membershipRoutes from "./routes/membership.routes.js";
 import serviceRoutes from "./routes/service.routes.js";
 import userPlanRoutes from "./routes/userPlan.routes.js";
 import contactRoutes from "./routes/contact.routes.js";
+import bmiRoutes from "./routes/bmiRoutes.js";
 dotenv.config();
 const app = express();
 const port = process.env.PORT || 5000;
@@ -31,6 +32,7 @@ const initApp = async () => {
   app.use("/api/services", serviceRoutes);
   app.use("/api/user-plans", userPlanRoutes);
   app.use("/api/contacts", contactRoutes);
+  app.use("/api/bmi", bmiRoutes);
 
   app.get("/", (req, res) => {
     res.json({ message: "Welcome to the AlphaForge Gym API!" });
