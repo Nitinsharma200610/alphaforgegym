@@ -9,6 +9,8 @@ const Bmi = () => {
   const [bmi, setBmi] = useState(null);
   const [status, setStatus] = useState("");
   const [angle, setAngle] = useState(-90);
+  const [errors, setErrors] = useState({});
+  const [shake, setShake] = useState(false);
 
   const getStatus = (bmiValue) => {
     if (bmiValue < 18.5) return "Underweight";
@@ -17,19 +19,38 @@ const Bmi = () => {
     return "Obese";
   };
 
+  const triggerShake = () => {
+    setShake(true);
+    setTimeout(() => setShake(false), 400);
+  };
+
   const calculateBMI = () => {
-    if (!height || !weight || !age) return;
+    let newErrors = {};
+
+    if (!age) {
+      newErrors.age = "Age is required";
+    } else if (age < 2 || age > 100) {
+      newErrors.age = "Please provide an age between 2 and 100";
+      triggerShake();
+    }
+
+    if (!height) newErrors.height = "Height is required";
+    if (!weight) newErrors.weight = "Weight is required";
+
+    setErrors(newErrors);
+
+    if (Object.keys(newErrors).length > 0) return;
 
     const h = height / 100;
     const bmiValue = (weight / (h * h)).toFixed(1);
-    setBmi(bmiValue);
 
+    setBmi(bmiValue);
     setStatus(getStatus(bmiValue));
 
-    // Accurate 180° mapping (BMI range 10 - 40)
-    const minBMI = 10;
+    const minBMI = 16;
     const maxBMI = 40;
     const limitedBMI = Math.min(Math.max(bmiValue, minBMI), maxBMI);
+
     const calculatedAngle =
       ((limitedBMI - minBMI) / (maxBMI - minBMI)) * 180 - 90;
 
@@ -64,8 +85,25 @@ const Bmi = () => {
             type="number"
             placeholder="Enter age"
             value={age}
-            onChange={(e) => setAge(e.target.value)}
+            min="2"
+            max="100"
+            className={`${errors.age ? "input-error" : ""} ${
+              shake ? "shake" : ""
+            }`}
+            onChange={(e) => {
+              const value = e.target.value;
+              setAge(value);
+
+              if (value < 2 || value > 100) {
+                setErrors({
+                  age: "Please provide an age between 2 and 100",
+                });
+              } else {
+                setErrors({});
+              }
+            }}
           />
+          {errors.age && <p className="error">{errors.age}</p>}
         </div>
 
         {/* Height */}
@@ -106,27 +144,27 @@ const Bmi = () => {
 
             {/* Gauge */}
             <div className="gauge-wrapper">
-  <div className="gauge">
-    <div className="gauge-arc"></div>
+              <div className="gauge">
+                <div className="gauge-arc"></div>
 
-    <div
-      className="needle"
-      style={{ transform: `rotate(${angle}deg)` }}
-    ></div>
+                <div
+                  className="needle"
+                  style={{ transform: `rotate(${angle}deg)` }}
+                ></div>
 
-    <div className="gauge-center">
-      <p>BMI</p>
-      <h2>{bmi}</h2>
-    </div>
-  </div>
+                <div className="gauge-center">
+                  <p>BMI</p>
+                  <h2>{bmi}</h2>
+                </div>
+              </div>
 
-  <div className="gauge-numbers">
-    <span style={{ left: "0%" }}>16</span>
-    <span style={{ left: "25%" }}>18.5</span>
-    <span style={{ left: "50%" }}>25</span>
-    <span style={{ left: "100%" }}>40</span>
-  </div>
-</div>
+              <div className="gauge-numbers">
+                <span style={{ left: "0%" }}>16</span>
+                <span style={{ left: "25%" }}>18.5</span>
+                <span style={{ left: "50%" }}>25</span>
+                <span style={{ left: "100%" }}>40</span>
+              </div>
+            </div>
           </>
         )}
       </div>

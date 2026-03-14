@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { loginUser } from "../services/authService";
 import { useAuth } from "../hooks/useAuth";
 import "./Login.css";
+
 import bgImage from "../assets/login-bg.png";
 import toast from "react-hot-toast";
 
@@ -19,9 +20,18 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+
     try {
       const data = await loginUser(formData);
+
+      // ✅ Save user in context
       login(data.user);
+
+      // ✅ Persist login state
+      localStorage.setItem("user", JSON.stringify(data.user));
+      localStorage.setItem("isLoggedIn", "true");
+
+      toast.success("Login Successful 🔥");
 
       // Redirect based on role
       if (data.user.role === "SUPERADMIN") {
@@ -31,6 +41,7 @@ const Login = () => {
       } else {
         navigate("/");
       }
+
     } catch (err) {
       toast.error(err.response?.data?.message || "Login failed");
     } finally {

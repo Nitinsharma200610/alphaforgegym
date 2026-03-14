@@ -90,14 +90,12 @@ const Contact = () => {
               </a>
 
               <a
-                href="https://wa.me/+91 93176 25636"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <MessageCircleMore
-                  style={{ color: "#39e736", cursor: "pointer" }}
-                />
-              </a>
+               href="https://wa.me/919317625636" 
+               target="_blank"
+                 rel="noreferrer"
+                >
+               <MessageCircleMore style={{ color: "#39e736", cursor: "pointer" }} />
+               </a>
             </div>
           </div>
 
